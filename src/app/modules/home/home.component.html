@@ -1,1 +1,55 @@
-<p>home works!</p>
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center">Task Manager</h1>
+    </div>
+    <div class="col-12 mt-4">
+      <nb-form-field>
+        <nb-icon nbPrefix icon="search-outline" pack="eva" ></nb-icon>
+        <input type="text" nbInput fullWidth placeholder="Search Tasks" class="bg-white"/>
+      </nb-form-field>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <nb-card accent="info" size="large"  class="bg-transparent border-left-0 border-right-0">
+        <nb-card-header class="bg-info">
+          <h2 class="font-weight-normal text-white">Tasks</h2>
+        </nb-card-header>
+        <nb-card-body>
+          <nb-list>
+            <nb-list-item *ngFor="let task of tasks ; let i= index;" class="bg-white shadow-sm">
+              <div class="row w-100 p-1">
+                <div class="col-8 m-auto">
+                  <h4 class="text-left text-info text-wrap">{{'Task heading' | titlecase}}</h4>
+                  <p class="text-left">26-feb-2019 <span class="text-muted">&nbsp;({{'high' | titlecase}} &nbsp;Priority)</span></p>
+                </div>
+                <div class="col-2">
+                  <div class="form-group">
+                    <label class="label"> Assign to</label>
+                    <nb-select class=" form-control">
+                      <nb-option *ngFor="let option of users" [value]="option.id">
+                        {{option?.name}}
+                      </nb-option>
+                    </nb-select>
+                  </div>
+                </div>
+                <div class="col-2 d-flex justify-content-end align-items-center">
+                  <div class="align-self-center">
+                    <button nbButton shape="round" status="danger" filled>
+                      <nb-icon   icon="trash-outline"></nb-icon>
+                    </button>
+                    <button nbButton shape="round" status="primary" filled class="ml-2">
+                      <nb-icon   icon="edit-outline"></nb-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </nb-list-item>
+          </nb-list>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</section>

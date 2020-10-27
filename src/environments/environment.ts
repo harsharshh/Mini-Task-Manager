@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BASE_URL: 'http://34.87.117.228:8080'
+  BASE_URL: 'https://devza.com'
 
 };
 

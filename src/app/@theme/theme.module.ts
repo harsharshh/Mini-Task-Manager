@@ -10,7 +10,7 @@ import {
   NbCheckboxModule,
   NbContextMenuModule,
   NbDatepickerModule,
-  NbDialogModule,
+  NbDialogModule, NbFormFieldModule,
   NbIconModule,
   NbInputModule,
   NbLayoutModule,
@@ -85,7 +85,8 @@ const NB_MODULES = [
   NbIconModule,
   NbEvaIconsModule,
   NbThemeModule,
-  NbDatepickerModule
+  NbDatepickerModule,
+  NbFormFieldModule
 ];
 const NEBULAR_FOR_ROOT = [
   NbSidebarModule,
