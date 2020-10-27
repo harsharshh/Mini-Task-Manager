@@ -9,7 +9,7 @@ import {HomeService} from './service/home.service';
 export class HomeComponent implements OnInit {
 
   constructor(private homeService: HomeService) { }
-  tasks : any = [{}];
+  tasks : any = [{}, {}, {}, {}, {}];
   users: any;
 
   ngOnInit(): void {
