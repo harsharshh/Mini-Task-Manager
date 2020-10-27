@@ -1,0 +1,40 @@
+@import 'themes';
+
+@mixin nb-overrides() {
+  nb-select.size-medium button {
+    padding: 0.4375rem 2.2rem 0.4375rem 1.125rem !important;
+
+    nb-icon {
+      right: 0.41rem !important;
+    }
+  }
+
+  nb-select.form-control {
+   padding: 0 !important;
+    border: none;
+  }
+}
+
+.form-group {
+
+  .required:after {
+    content: " *";
+    color: red;
+  }
+}
+
+
+
+
+
+.vertical-menu .list-group-item {
+  font-size: 1.1rem;
+  color: nb-theme(color-primary-500);
+  background: white;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  outline: 0;
+}
+

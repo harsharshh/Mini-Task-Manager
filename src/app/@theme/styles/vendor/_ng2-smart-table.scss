@@ -1,0 +1,50 @@
+@import '../themes';
+
+ng2-smart-table {
+
+  table {
+    //  border-spacing: 0 rem(5) !important;
+    border-collapse: collapse !important;
+  }
+
+  thead {
+    tr {
+
+      th {
+        text-transform: uppercase;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
+        color: lighten(nb-theme(text-basic-color), 20);
+
+        a {
+          font-size: 0.8rem !important;
+          font-weight: 600 !important;
+          color: lighten(nb-theme(text-basic-color), 20);
+        }
+      }
+    }
+  }
+
+  tbody {
+
+    tr {
+
+      :hover {
+        color: nb-theme(text-basic-color);
+        cursor: pointer !important;
+      }
+
+      td {
+
+        :hover {
+          color: nb-theme(text-basic-color);
+        }
+
+        .form-control {
+          max-height: 1rem !important;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,13 @@
+//Functions File:
+//Conversions:
+@import "~bootstrap/scss/functions";
+
+@function rem($pixels) {
+    $inRems: $pixels/14;
+    @return #{$inRems}rem;
+}
+
+@function pixel($rems) {
+    $inPixels: $rems * 14;
+    @return #{$inPixels}px;
+}

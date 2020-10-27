@@ -1,0 +1,8 @@
+{
+  "/user-service": {
+    "target": "https://apis.pinkcapital.in/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
