@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  BASE_URL: 'https://apis.pinkcapital.in'
+  BASE_URL: 'https://devza.com'
 };
