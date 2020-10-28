@@ -1,5 +1,5 @@
 export  enum priority_enum {
-  1= 'Normal',
-  2= 'Mid',
-  3= 'High'
+  'high' = 1,
+  'medium' = 2,
+  'low' = 3
 }
