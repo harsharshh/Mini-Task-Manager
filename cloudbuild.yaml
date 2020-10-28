@@ -1,0 +1,17 @@
+steps:
+
+  # Install node packages
+  - name: 'gcr.io/cloud-builders/npm:node-12.18.3'
+    args: [ 'install' ]
+
+  # Build productive files
+  - name: 'gcr.io/cloud-builders/npm:node-12.18.3'
+    args: [ 'rebuild', 'node-sass' ]
+
+  # Build productive files
+  - name: 'gcr.io/cloud-builders/npm:node-12.18.3'
+    args: [ 'run', 'production' ]
+
+  # Deploy to google cloud app egnine
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy', '--version=prod']

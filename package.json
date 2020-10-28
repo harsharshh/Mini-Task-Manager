@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "proxy": "ng serve  --proxy-config proxy.conf.json"
+    "proxy": "ng serve  --proxy-config proxy.conf.json",
+    "production": " ng build --prod --aot --outputHashing=all"
   },
   "private": true,
   "dependencies": {
