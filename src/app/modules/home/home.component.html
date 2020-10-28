@@ -6,7 +6,7 @@
     <div class="col-12">
       <nb-form-field>
         <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
-        <input type="search" nbInput fullWidth placeholder="Search Tasks" class="bg-white"/>
+        <input type="search" nbInput fullWidth placeholder="Press enter to search" class="bg-white" (search)="filter('search', $event)"/>
       </nb-form-field>
     </div>
   </div>
@@ -19,14 +19,16 @@
             <h2 class="font-weight-normal ">Tasks</h2>
             <div class="row mt-2">
               <div class="col d-flex justify-content-around p-2">
-                <nb-select class=" form-control" placeholder="Select priority">
-                  <nb-option *ngFor="let option of users" [value]="option.id">
-                    {{option?.name}}
+                <nb-select class=" form-control" placeholder="Select priority"
+                           [(selected)]="filterValue['priority']"
+                           (selectedChange)="filter('priority' , $event)">
+                  <nb-option *ngFor="let option of priorityFilter" [value]="option.value">
+                    {{option?.label}}
                   </nb-option>
                 </nb-select>
-                <input nbInput placeholder="Select Date" [nbDatepicker]="datepicker"/>
-                <nb-datepicker #datepicker></nb-datepicker>
-                <button nbButton outline class="ml-2 bg-white" status="danger" shape="round">
+                <input nbInput placeholder="Select Date" [nbDatepicker]="datepicker"  [(ngModel)]="filterValue['due_date']"/>
+                <nb-datepicker #datepicker (dateChange)="filter('due_date' , $event)"></nb-datepicker>
+                <button nbButton outline class="ml-2 bg-white" status="danger" shape="round" (click)="clearFilter()">
                   <nb-icon icon="close-outline"></nb-icon>
                   clear
                 </button>

@@ -5,6 +5,7 @@ import {AddTaskComponent} from './sub-component/add-task/add-task.component';
 import {Subscription} from 'rxjs/Rx';
 import {AlertService} from './service/alert.service';
 import {priority_enum} from './entity/priority-string';
+import {priority} from './entity/priority';
 
 @Component({
   selector: 'app-home',
@@ -19,23 +20,18 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   tasks: any = [];
+  filteredTasks = [];
   users: any;
   subscription: Subscription;
   priority = priority_enum;
+  priorityFilter = priority;
+  filterValue= {};
 
   ngOnInit(): void {
     this.getTasks();
     this.getUsers();
 
   }
-
-  /*
-    assigned_name: "Arpit"
-    assigned_to: "1"
-    created_on: "2020-10-28 12:04:13"
-    due_date: null
-    id: "796"
-    message: "test data"*/
 
   ngAfterViewInit() {
     this.subscription = this.homeService.isActionDoneResponse.subscribe(res => {
@@ -48,6 +44,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   getTasks() {
     this.homeService.getTasks().subscribe(res => {
       this.tasks = res.tasks;
+      this.filteredTasks = this.tasks;
     })
   }
 
@@ -98,6 +95,35 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }, () => {
       this.alertService.showErrorAlert('error');
     })
+  }
+
+  filter(type, event) {
+    if(type == 'priority') {
+       this.filterValue['priority'] = event;
+       this.tasks = this.filteredTasks.filter(res=> {
+         return res.priority == event;
+       })
+    } else if(type == 'due_date'){
+      this.filterValue['due_date'] = event;
+      this.tasks = this.filteredTasks.filter(res=> {
+        res.due_date = new Date(res.due_date);
+        return res.due_date.getTime() == event.getTime();
+      })
+    }
+    else if( type== 'search'){
+      if(event.target.value) {
+        this.tasks = this.filteredTasks.filter(res=> {
+          return res.message.includes(event.target.value);
+        })
+      } else {
+        this.getTasks();
+      }
+    }
+  }
+
+  clearFilter() {
+    this.filterValue = {};
+    this.getTasks();
   }
 
   ngOnDestroy() {
