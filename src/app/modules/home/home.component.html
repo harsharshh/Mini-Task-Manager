@@ -27,13 +27,14 @@
                 <input nbInput placeholder="Select Date" [nbDatepicker]="datepicker"/>
                 <nb-datepicker #datepicker></nb-datepicker>
                 <button nbButton outline class="ml-2 bg-white" status="danger" shape="round">
-                  <nb-icon icon="close-outline"></nb-icon> clear
+                  <nb-icon icon="close-outline"></nb-icon>
+                  clear
                 </button>
               </div>
             </div>
           </div>
           <div class="float-right ">
-            <button nbButton status="primary">+ Add Task</button>
+            <button nbButton status="primary" (click)="addTasks()">+ Add Task</button>
           </div>
         </nb-card-header>
         <nb-card-body>
@@ -41,15 +42,15 @@
             <nb-list-item *ngFor="let task of tasks ; let i= index;" class="bg-white shadow-sm m-2">
               <div class="row w-100 p-1">
                 <div class="col-md-8  m-auto">
-                  <h4 class="text-left text-info text-wrap">{{'Task heading' | titlecase}}</h4>
-                  <p class="text-left">26-feb-2019 <span class="text-muted">&nbsp;({{'high' | titlecase}} &nbsp;Priority)</span>
+                  <h4 class="text-left text-info text-wrap">{{task?.message | titlecase}}</h4>
+                  <p class="text-left">{{task?.due_date | date: 'shortDate'}}<span class="text-muted">&nbsp;({{priority[task?.priority] | titlecase}} &nbsp;Priority)</span>
                   </p>
                 </div>
                 <div class="col-md-2 d-flex justify-content-end align-items-center">
                   <div class="form-group">
                     <label class="label"> Assign to</label>
-                    <nb-select class=" form-control">
-                      <nb-option *ngFor="let option of users" [value]="option.id">
+                    <nb-select class=" form-control"   [(selected)]="task.assigned_to" (selectedChange)="assign($event, task)">
+                      <nb-option *ngFor="let option of users" [value]="option?.id">
                         {{option?.name}}
                       </nb-option>
                     </nb-select>
@@ -57,10 +58,10 @@
                 </div>
                 <div class="col-md-2  d-flex justify-content-end align-items-center">
                   <div class="align-self-center">
-                    <button nbButton shape="round" status="danger" filled>
+                    <button nbButton shape="round" status="danger" filled (click)="deleteTask(task?.id)">
                       <nb-icon icon="trash-outline"></nb-icon>
                     </button>
-                    <button nbButton shape="round" status="primary" filled class="ml-2">
+                    <button nbButton shape="round" status="primary" filled class="ml-2" (click)="updateTask(task)">
                       <nb-icon icon="edit-outline"></nb-icon>
                     </button>
                   </div>

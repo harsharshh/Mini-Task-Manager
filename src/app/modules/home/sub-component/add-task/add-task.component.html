@@ -1,0 +1,70 @@
+<nb-card style="height: 75vh; width: 60vh;" class="bg-white">
+  <nb-card-header class="header justify-content-between bg-white">
+    <div class="row d-flex">
+      <nb-actions>
+        <nb-action class="pr-0" icon="close-outline" nbTooltip="Close" (click)="close()"></nb-action>
+      </nb-actions>
+      <div>
+        <h6 class="text-muted" *ngIf="!taskId">&nbsp;Create Task</h6>
+        <h6 class="text-muted" *ngIf="taskId">&nbsp; Update Task</h6>
+      </div>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="container-fluid">
+      <form [formGroup]="taskForm">
+        <div class="row mt-2  d-flex justify-content-center align-items-center">
+          <div class="col-md-12 col-sm-12 form-group">
+            <label class="label required">Task message
+            </label>
+            <input class="form-control"
+                   [ngClass]="{ 'is-invalid': f?.message?.touched && f?.message?.errors }"
+                   nbInput fullWidth placeholder="Enter Full message" formControlName="message"/>
+            <div *ngIf="f?.message?.touched && f?.message?.errors" class="invalid-feedback">
+              <div *ngIf="f?.message?.errors?.required">Task message is required</div>
+            </div>
+          </div>
+
+
+          <div class="col-md-12 col-sm-12 form-group">
+            <label class="label required">Due Date
+            </label>
+            <input class="form-control"
+                   nbInput fullWidth placeholder="Enter Due Date" readonly formControlName="due_date"
+                   [nbDatepicker]="datepicker"/>
+            <nb-datepicker #datepicker></nb-datepicker>
+          </div>
+
+          <div class="col-md-12 col-sm-12 form-group">
+            <label class="label "> Assign To
+            </label>
+            <nb-select class="form-control"
+                       fullWidth formControlName="assigned_to"
+                       placeholder="Select priority">
+              <nb-option *ngFor="let option of users" [value]="option.id">
+                {{option.name | titlecase}}
+              </nb-option>
+            </nb-select>
+          </div>
+
+          <div class="col-md-12 col-sm-12 form-group">
+            <label class="label "> Priority
+            </label>
+            <nb-select class="form-control"
+                       fullWidth formControlName="priority"
+                       placeholder="Select user">
+              <nb-option *ngFor="let option of priority" [value]="option.value">
+                {{option.label | titlecase}}
+              </nb-option>
+            </nb-select>
+          </div>
+
+          <div class="col-md-12">
+            <button class="float-right" nbButton status="primary" (click)="submit()" size="small"> Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>
